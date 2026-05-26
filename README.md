@@ -1,4 +1,4 @@
-# manufacturing-wip-tracker
+# Manufacturing WIP Tracker
 
 Manufacturing tray routing tracer operating on IBM Informix DB. Anchors each tray's station scans to a key scan event, then pivots upstream and downstream station scans using correlated subqueries. 
 Query output feeds a Power BI data model joined to optical measurement results for station-level production traceability.
