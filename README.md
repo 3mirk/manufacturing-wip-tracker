@@ -1,6 +1,7 @@
 # manufacturing-wip-tracker
 
-Manufacturing tray routing tracer built on IBM Informix. Anchors each tray's journey to a key inspection event, then resolves upstream and downstream station scans using correlated subqueries. Query output feeds a Power BI data model joined to optical measurement results for station-level production traceability.
+Manufacturing tray routing tracer operating on IBM Informix DB. Anchors each tray's station scans to a key scan event, then pivots upstream and downstream station scans using correlated subqueries. 
+Query output feeds a Power BI data model joined to optical measurement results for station-level production traceability.
 
 ---
 
@@ -20,12 +21,15 @@ The result is one row per tray showing exactly which machine processed it at eac
 ## Production pipeline
 
 ```
-[blk] → [gen ★] → [pol] → [eng] → [coat] → [dbl] → [ins]
-              ↑
-         anchor event
+[blk] → [gen !!] → [pol] → [eng] → [coat] → [dbl] → [ins]
+            ↑
+      anchor event
 ```
 
-The generate scan is the anchor point. Everything to the left is resolved backward in time; everything to the right is resolved forward. `★` marks the INNER JOIN — trays without a generate scan are excluded entirely.
+The generate scan is the anchor point. 
+Everything to the left is resolved backward in time.
+Everything to the right is resolved forward. 
+`!!` marks the INNER JOIN — trays without a generator scan are excluded entirely.
 
 ---
 
